@@ -1,0 +1,10 @@
+<ion-view view-title="1RMs">
+  <ion-content>
+    <h1>One Rep Maxes</h1>
+    <ion-list>
+      <ion-item ng-repeat="max in maxes" href="#/app/playlists/{{max.id}}">
+        {{max.title}} - {{max.weight}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
