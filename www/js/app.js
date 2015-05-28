@@ -40,6 +40,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.workouts', {
+    url: "/workouts",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/workouts.html",
+        controller: 'MaxCtrl'
+      }
+    }
+  })
+
   .state('app.browse', {
     url: "/browse",
     views: {
@@ -59,14 +69,14 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: "/playlists/:playlistId",
+    url: "/maxes/:maxId",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: "templates/max.html",
+        controller: 'SingleMaxCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/workouts');
 });

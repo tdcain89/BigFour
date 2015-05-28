@@ -1,0 +1,47 @@
+<ion-view view-title="Current Workouts">
+  <ion-content>
+    <div class="list card">
+      <ion-list>
+        <ion-item ng-repeat="max in maxes">
+          <div class="item item-avatar">
+            <img src="/img/ionic.png">
+            <h2>{{max.title}}</h2>
+            <p>{{max.description}}</p>
+          </div>
+          <div class="item item-image">
+            Warmup
+            <div class="row">
+              <div class="col">{{doWeight(max.weight* 0.4) }} x 5</div>
+              <div class="col">{{doWeight(max.weight* 0.55) }} x 5</div>
+              <div class="col">{{doWeight(max.weight* 0.6) }} x 5</div>
+            </div>
+            <div class="row"><div class="col"></div></div>
+            Working Weight
+            <div class="row">
+              <div class="col">{{doWeight(max.weight* 0.75) }} x 8</div>
+              <div class="col">{{doWeight(max.weight* 0.75) }} x 8</div>
+              <div class="col">{{doWeight(max.weight* 0.75) }} x 8</div>
+            </div>
+            <div class="row"><div class="col"></div></div>
+            AMRAP
+            <div class="row">
+              <div class="col">{{doWeight(max.weight* 0.9) }} x 1+</div>
+            </div>
+          </div>
+
+          <a class="item item-icon-left balanced" href="#">
+            <i class="icon ion-checkmark-circled"></i>
+            Complete Workout
+          </a>
+
+          <a class="item item-icon-left assertive" href="#">
+            <i class="icon ion-close-circled"></i>
+            Fail Workout
+          </a>
+
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+  </ion-content>
+</ion-view>

@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
-  $scope.loginData = {};
+  $scope.formData = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -46,11 +46,40 @@ angular.module('starter.controllers', [])
 
 .controller('MaxCtrl', function($scope) {
   $scope.maxes = [
-    { title: 'OHP', id: 1, weight: 45 },
-    { title: 'Bench Press', id: 2, weight: 45 },
-    { title: 'Squat', id: 3, weight: 45 },
-    { title: 'Deadlift', id: 4, weight: 45 }
+    { title: 'OHP', id: 1, weight: 100, description: 'Watch your head' },
+    { title: 'Bench Press', id: 2, weight: 200, description: 'No chest bounce' },
+    { title: 'Squat', id: 3, weight: 185, description: 'Go Lower' },
+    { title: 'Deadlift', id: 4, weight: 225, description: 'Straight back' }
   ];
+
+  $scope.doWeight = function(weight) {
+    w = weight + (5 - (weight % 5));
+
+    if(w < 45){
+      w = 45;
+    }
+
+    return w;
+  };
+})
+
+.controller('SingleMaxCtrl', function($scope, $stateParams) {
+  $scope.maxes = [
+    { title: 'OHP', id: 1, weight: 100, description: 'Watch your head' },
+    { title: 'Bench Press', id: 2, weight: 200, description: 'No chest bounce' },
+    { title: 'Squat', id: 3, weight: 185, description: 'Go Lower' },
+    { title: 'Deadlift', id: 4, weight: 225, description: 'Straight back' }
+  ];
+  $scope.activeMax = $scope.maxes[$stateParams.maxId - 1];
+
+  $scope.setMax = function() {
+    console.log($stateParams);
+    $scope.activeMax = $scope.maxes[$stateParams.maxId - 1];
+
+    if ($scope.weight) {
+      window.localStorage[$scope.activeMax.title] = $scope.weight;
+    }
+  };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
