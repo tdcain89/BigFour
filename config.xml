@@ -8,6 +8,8 @@
       Tcain Industries
   </author>
   <content src="index.html"/>
+  <icon src="www/img/logo.png" />
+  <splash src="www/img/logo.png" density="land-hdpi"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
