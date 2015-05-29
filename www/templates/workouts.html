@@ -1,47 +1,47 @@
 <ion-view view-title="Current Workouts">
   <ion-content>
-    <div class="list card">
-      <ion-list>
-        <ion-item ng-repeat="max in maxes">
+    <ion-list>
+      <ion-item ng-repeat="max in maxes">
+        <div class="list card">
           <div class="item item-avatar">
-            <img src="/img/ionic.png">
+            <img src="{{max.icon}}">
             <h2>{{max.title}}</h2>
             <p>{{max.description}}</p>
           </div>
           <div class="item item-image">
             Warmup
             <div class="row">
-              <div class="col">{{doWeight(max.weight* 0.4) }} x 5</div>
-              <div class="col">{{doWeight(max.weight* 0.55) }} x 5</div>
-              <div class="col">{{doWeight(max.weight* 0.6) }} x 5</div>
+              <div class="col">{{doWeight(max.weight* 0.4) }} lbs x 5 reps</div>
+              <div class="col">{{doWeight(max.weight* 0.55) }} lbs x 5 reps</div>
+              <div class="col">{{doWeight(max.weight* 0.6) }} lbs x 5 reps</div>
             </div>
             <div class="row"><div class="col"></div></div>
             Working Weight
             <div class="row">
-              <div class="col">{{doWeight(max.weight* 0.75) }} x 8</div>
-              <div class="col">{{doWeight(max.weight* 0.75) }} x 8</div>
-              <div class="col">{{doWeight(max.weight* 0.75) }} x 8</div>
+              <div class="col">{{doWeight(max.weight* 0.75) }} lbs x 8 reps</div>
+              <div class="col">{{doWeight(max.weight* 0.75) }} lbs x 8 reps</div>
+              <div class="col">{{doWeight(max.weight* 0.75) }} lbs x 8 reps</div>
             </div>
             <div class="row"><div class="col"></div></div>
             AMRAP
             <div class="row">
-              <div class="col">{{doWeight(max.weight* 0.9) }} x 1+</div>
+              <div class="col">{{doWeight(max.weight* 0.9) }} lbs x 1+ rep(s)</div>
             </div>
           </div>
 
           <a class="item item-icon-left balanced" href="#">
             <i class="icon ion-checkmark-circled"></i>
-            Complete Workout
+            <button ng-click="completeWorkout({{max.id}});">Complete Workout</button>
           </a>
 
           <a class="item item-icon-left assertive" href="#">
-            <i class="icon ion-close-circled"></i>
-            Fail Workout
+            <i class="icon ion-close-circled" ng-click="failWorkout({{max.id}});"></i>
+            <button ng-click="failWorkout({{max.id}});">Fail Workout</button>
           </a>
 
         </div>
-      </ion-item>
-    </ion-list>
-  </div>
+      </div>
+    </ion-item>
+  </ion-list>
   </ion-content>
 </ion-view>

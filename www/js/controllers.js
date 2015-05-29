@@ -33,23 +33,12 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('MaxCtrl', function($scope) {
+.controller('MaxCtrl', function($scope, $localStorage, $window) {
   $scope.maxes = [
-    { title: 'OHP', id: 1, weight: 100, description: 'Watch your head' },
-    { title: 'Bench Press', id: 2, weight: 200, description: 'No chest bounce' },
-    { title: 'Squat', id: 3, weight: 185, description: 'Go Lower' },
-    { title: 'Deadlift', id: 4, weight: 225, description: 'Straight back' }
+    { title: 'OHP', id: 1, weight: $localStorage.get(1), description: 'Watch your head', icon: 'img/ohp.png' },
+    { title: 'Bench Press', id: 2, weight: $localStorage.get(2), description: 'No chest bounce', icon: 'img/bench.png' },
+    { title: 'Squat', id: 3, weight: $localStorage.get(3), description: 'Go Lower', icon: 'img/squat.png' },
+    { title: 'Deadlift', id: 4, weight: $localStorage.get(4), description: 'Straight back', icon: 'img/deadlift.png' }
   ];
 
   $scope.doWeight = function(weight) {
@@ -61,26 +50,34 @@ angular.module('starter.controllers', [])
 
     return w;
   };
+
+  $scope.completeWorkout = function(maxId) {
+    $localStorage.set(maxId, parseInt($localStorage.get(maxId)) + 5);
+    $window.location.reload(true);
+  };
+
+  $scope.failWorkout = function(maxId) {
+    $localStorage.set(maxId, parseInt($localStorage.get(maxId)) - 5);
+    $window.location.reload(true);
+  };
 })
 
-.controller('SingleMaxCtrl', function($scope, $stateParams) {
+.controller('SingleMaxCtrl', function($scope, $stateParams, $localStorage, $window, $location) {
   $scope.maxes = [
-    { title: 'OHP', id: 1, weight: 100, description: 'Watch your head' },
-    { title: 'Bench Press', id: 2, weight: 200, description: 'No chest bounce' },
-    { title: 'Squat', id: 3, weight: 185, description: 'Go Lower' },
-    { title: 'Deadlift', id: 4, weight: 225, description: 'Straight back' }
+    { title: 'OHP', id: 1, weight: $localStorage.get(1), description: 'Watch your head', icon: 'img/ohp.png' },
+    { title: 'Bench Press', id: 2, weight: $localStorage.get(2), description: 'No chest bounce', icon: 'img/bench.png' },
+    { title: 'Squat', id: 3, weight: $localStorage.get(3), description: 'Go Lower', icon: 'img/squat.png' },
+    { title: 'Deadlift', id: 4, weight: $localStorage.get(4), description: 'Straight back', icon: 'img/deadlift.png' }
   ];
   $scope.activeMax = $scope.maxes[$stateParams.maxId - 1];
 
   $scope.setMax = function() {
-    console.log($stateParams);
     $scope.activeMax = $scope.maxes[$stateParams.maxId - 1];
 
     if ($scope.weight) {
-      window.localStorage[$scope.activeMax.title] = $scope.weight;
+      $localStorage.set($scope.activeMax.id, $scope.weight);
+      $window.location.reload(true);
+      $location.path("#/app/workouts");
     }
   };
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 });

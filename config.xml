@@ -2,11 +2,11 @@
 <widget id="com.ionicframework.bigfour151922" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>BigFour</name>
   <description>
-        An Ionic Framework and Cordova project.
+        An Ionic Framework and Cordova project for assistance in weight training.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+  <author email="tdcain89@gmail" href="http://tylercain.rocks/">
+      Tcain Industries
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>

@@ -1,12 +1,12 @@
-<ion-view view-title="1RMs">
+<ion-view view-title="{{activeMax.title}}">
   <ion-content>
-    <h1>{{activeMax.title}}</h1>
     <form ng-submit="setMax()" ng-controller="SingleMaxCtrl">
-
-      <label class="item item-input">
-        <span class="input-label">{{activeMax.title}}</span>
-        <input type="text" ng-model="weight" value="{{window.localStorage[activeMax.title]}}">
-      </label>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">{{activeMax.title}}</span>
+          <input type="text" ng-model="weight" value="{{$localStorage.get(activeMax.id)}}" placeholder="enter weight">
+        </label>
+      </div>
     </form>
   </ion-content>
 </ion-view>
